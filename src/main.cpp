@@ -1,43 +1,26 @@
 #include <iostream>
 
-#include "opencv2/highgui/highgui.hpp"
-
-#include "libraw/libraw.h"
+#include "Image.h"
 
 int main(int argc, char* argv[])
 {
-	LibRaw rawProcessor;
+	Image *I;
 
-	// If there is no parameter during the programm launch
+	// Handle parameters
 	if(argv[1] == NULL)
 	{
 		std::string file;
 		std::cout << "Please, you may enter a file" << std::endl;
 		std::cin >> file;
-		if(rawProcessor.open_file(file.c_str()) != LIBRAW_SUCCESS)
-		{
-			std::cout << "Sorry there is an error while trying to open the file !" << std::endl;
-		}
-		else
-		{
-			std::cout << "Image size: " << rawProcessor.imgdata.sizes.width << " x " << rawProcessor.imgdata.sizes.height << std::endl;
-		}
+		I = new Image(file.c_str());
 	}
-	// If there is file parametered during the programm launch
 	else
 	{
-		if(rawProcessor.open_file(argv[1]) != LIBRAW_SUCCESS)
-		{
-			std::cout << "Sorry there is an error, while trying to open the file !" << std::endl;
-		}
-		else
-		{
-			std::cout << "Image size: " << rawProcessor.imgdata.sizes.width << " x " << rawProcessor.imgdata.sizes.height << std::endl;
-		}	
+		I = new Image(argv[1]);
 	}
 
-	std::cout << (std::string)rawProcessor.imgdata.idata.make << " - ";
-	std::cout << (std::string)rawProcessor.imgdata.idata.model << std::endl;
+	// Display Image
+	I->displayImage();
 
-	rawProcessor.recycle();
+	delete I;
 }
