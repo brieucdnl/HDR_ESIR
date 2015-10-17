@@ -23,11 +23,8 @@ Image::Image(const char* file)
 	{
 				
 		rawProcessor.unpack();
-		// !!! Exception concerning unpack return to handle !!!
-		
-		//rawProcessor.imgdata.params.no_interpolation = 1;
-		//rawProcessor.imgdata.params.no_auto_scale = 1;
-		//rawProcessor.imgdata.params.no_auto_bright = 1;
+		// !!! Exception concerning unpack return to handle !!!	
+
 		rawProcessor.imgdata.params.output_bps = 16;
 		
 		//rawProcessor.raw2image();
@@ -75,6 +72,45 @@ Image::~Image()
 cv::Mat Image::getImg() const
 {
 	return Img;
+}
+
+/*
+ * GETNAMEIMAGE()
+ *
+ * Getter nameImage
+ *
+ * Input: None
+ * Output: std::string nameImage
+ */
+std::string getNameImage() const
+{
+	return nameImage;
+}
+
+/*
+ * GETCAMERAMODEL()
+ *
+ * Getter cameraModel
+ *
+ * Input: None
+ * Output: std::string cameraModel
+ */
+std::string getCameraModel() const
+{
+	return cameraModel;
+}
+
+/*
+ * GETSHUTTERTIME()
+ *
+ * Getter shutterTime
+ *
+ * Input: None
+ * Output: int shutterTime
+ */
+int getShutterTime() const
+{
+	return shutterTime;
 }
 
 /********** METHODS **********/

@@ -14,13 +14,21 @@
 class Image
 {
 	public:
+		// Constructor
 		Image(const char* file);
-		cv::Mat getImg() const;
-		void displayImage() const;
+		// Destructor
 		~Image();	
+		// Getters
+		cv::Mat getImg() const;		
+		std::string getNameImage() const;
+		std::string getCameraModel() const;
+		int getShutterTime() const;
+		// Functions
+		void displayImage() const;
 	
 	private:
 		cv::Mat Img;
+		std::string nameImage;
 		std::string cameraModel;
 		int shutterTime;
 };
