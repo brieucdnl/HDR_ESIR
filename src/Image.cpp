@@ -33,11 +33,14 @@ Image::Image(const char* file)
 		tmpImg = rawProcessor.dcraw_make_mem_image(&check);
 	
 		// Init image
-		Img = cv::Mat(rawProcessor.imgdata.sizes.width, rawProcessor.imgdata.sizes.height, CV_16UC3, tmpImg->data);
+		Img = cv::Mat(tmpImg->height, tmpImg->width, CV_16UC3, tmpImg->data);
+		// Converting RGB to BGR (for OpenCV)
+		cv::cvtColor(Img, this->getImg(), CV_RGB2BGR);
 
 		// Init datas
-		cameraModel = (std::string) rawProcessor.imgdata.idata.make + "-" + rawProcessor.imgdata.idata.model;
-		shutterTime = rawProcessor.imgdata.other.shutter;
+		nameImage = file;
+		cameraModel = (std::string) rawProcessor.imgdata.idata.make + " - " + rawProcessor.imgdata.idata.model;
+		shutterSpeed = rawProcessor.imgdata.other.shutter;
 	}
 
 	// Free rawProcessor
@@ -82,7 +85,7 @@ cv::Mat Image::getImg() const
  * Input: None
  * Output: std::string nameImage
  */
-std::string getNameImage() const
+std::string Image::getNameImage() const
 {
 	return nameImage;
 }
@@ -95,22 +98,22 @@ std::string getNameImage() const
  * Input: None
  * Output: std::string cameraModel
  */
-std::string getCameraModel() const
+std::string Image::getCameraModel() const
 {
 	return cameraModel;
 }
 
 /*
- * GETSHUTTERTIME()
+ * GETSHUTTERSPEED()
  *
- * Getter shutterTime
+ * Getter shutterSpeed
  *
  * Input: None
- * Output: int shutterTime
+ * Output: float shutterSpeed
  */
-int getShutterTime() const
+float Image::getShutterSpeed() const
 {
-	return shutterTime;
+	return shutterSpeed;
 }
 
 /********** METHODS **********/
@@ -125,10 +128,7 @@ int getShutterTime() const
  */
 void Image::displayImage() const
 {
-	cv::Mat tmpImg;
-	cv::cvtColor(Img, tmpImg, CV_RGB2BGR);
-
-	cv::namedWindow("Image", cv::WINDOW_NORMAL);
-	cv::imshow("Image", tmpImg);
+	cv::namedWindow(this->getNameImage(), cv::WINDOW_NORMAL);
+	cv::imshow(this->getNameImage(), this->getImg());
 	cv::waitKey(0);
 }

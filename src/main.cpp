@@ -20,6 +20,9 @@ int main(int argc, char* argv[])
 	}
 
 	// Display Image
+	std::cout << "Image name: " << I->getNameImage() << std::endl;
+	std::cout << "Shutter speed: " << I->getShutterSpeed() << " sec" << std::endl;
+	std::cout << "Camera model: " << I->getCameraModel() << std::endl;
 	I->displayImage();
 
 	delete I;

@@ -22,7 +22,7 @@ class Image
 		cv::Mat getImg() const;		
 		std::string getNameImage() const;
 		std::string getCameraModel() const;
-		int getShutterTime() const;
+		float getShutterSpeed() const;
 		// Functions
 		void displayImage() const;
 	
@@ -30,7 +30,7 @@ class Image
 		cv::Mat Img;
 		std::string nameImage;
 		std::string cameraModel;
-		int shutterTime;
+		float shutterSpeed;
 };
 
 #endif
