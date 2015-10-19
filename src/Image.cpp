@@ -50,7 +50,7 @@ Image::Image(const char* file)
 /********** DESTRUCTOR **********/
 
 /*
- * ~IMAGE()
+ * ~Image()
  *
  * Free space used by the Image
  *
@@ -65,7 +65,7 @@ Image::~Image()
 /********** GETTERS AND SETTERS **********/
 
 /*
- * GETIMG()
+ * getImg()
  *
  * Getter Img
  *
@@ -78,7 +78,7 @@ cv::Mat Image::getImg() const
 }
 
 /*
- * GETNAMEIMAGE()
+ * getNameImage()
  *
  * Getter nameImage
  *
@@ -91,7 +91,7 @@ std::string Image::getNameImage() const
 }
 
 /*
- * GETCAMERAMODEL()
+ * getCameraModel()
  *
  * Getter cameraModel
  *
@@ -104,7 +104,7 @@ std::string Image::getCameraModel() const
 }
 
 /*
- * GETSHUTTERSPEED()
+ * getShutterSpeed()
  *
  * Getter shutterSpeed
  *
@@ -119,7 +119,7 @@ float Image::getShutterSpeed() const
 /********** METHODS **********/
 
 /*
- * DISPLAYIMAGE()
+ * displayImage()
  *
  * Method displaying the image
  *

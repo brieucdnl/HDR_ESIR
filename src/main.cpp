@@ -1,11 +1,16 @@
 #include <iostream>
 
 #include "Image.h"
+#include "HDR.h"
 
 int main(int argc, char* argv[])
 {
 	Image *I;
-
+	HDR *processor;
+	
+	// Creating the HDR_Processor
+	processor = new HDR();
+	
 	// Handle parameters
 	if(argv[1] == NULL)
 	{
@@ -15,15 +20,24 @@ int main(int argc, char* argv[])
 		I = new Image(file.c_str());
 	}
 	else
-	{
-		I = new Image(argv[1]);
+	{	
+		for(int i = 1; i < argc; i++)
+		{
+			I = new Image(argv[i]);
+			processor->add(*I);
+		}
 	}
 
+	i = 0; // Reinit var i
 	// Display Image
-	std::cout << "Image name: " << I->getNameImage() << std::endl;
-	std::cout << "Shutter speed: " << I->getShutterSpeed() << " sec" << std::endl;
-	std::cout << "Camera model: " << I->getCameraModel() << std::endl;
-	I->displayImage();
+	for(int i = 0; i < processor->getVecImg().size(); i++)
+	{
+		std::cout << "Image name: " << processor->getVecImg()[i].getNameImage() << std::endl;
+		std::cout << "Shutter speed: " << processor->getVecImg()[i].getShutterSpeed() << " sec" << std::endl;
+		std::cout << "Camera model: " << processor->getVecImg()[i].getCameraModel() << std::endl;
+		processor->getVecImg()[i].displayImage();
+		i++;
+	}
 
-	delete I;
+	delete processor;
 }

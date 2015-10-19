@@ -14,10 +14,12 @@ set(LIBS ${LIBS} ${LibRaw_LIBRARIES})
 set(${PROJECT_NAME}_CPP
 	src/main.cpp
 	src/Image.cpp
+	src/HDR.cpp
 )
 
 set(${PROJECT_NAME}_H
 	src/Image.h
+	src/HDR.h
 )
 
 add_executable(
