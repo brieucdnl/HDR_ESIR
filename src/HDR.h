@@ -20,13 +20,13 @@ class HDR
 		// Destructor
 		~HDR();
 		// Getters
-		std::vector<Image> getVecImg();
+		std::vector<Image *> getVecImg();
 		// Setters
-		void add(const Image Img);
+		void add(Image *Img);
 		// Functions
 
 	private:
-		std::vector<Image> vecImg;
+		std::vector<Image *> vecImg;
 };
 
 #endif

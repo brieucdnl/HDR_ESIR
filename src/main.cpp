@@ -20,24 +20,22 @@ int main(int argc, char* argv[])
 		I = new Image(file.c_str());
 	}
 	else
-	{	
+	{
 		for(int i = 1; i < argc; i++)
 		{
 			I = new Image(argv[i]);
-			processor->add(*I);
+			processor->add(I);
 		}
 	}
 
-	i = 0; // Reinit var i
 	// Display Image
 	for(int i = 0; i < processor->getVecImg().size(); i++)
 	{
-		std::cout << "Image name: " << processor->getVecImg()[i].getNameImage() << std::endl;
-		std::cout << "Shutter speed: " << processor->getVecImg()[i].getShutterSpeed() << " sec" << std::endl;
-		std::cout << "Camera model: " << processor->getVecImg()[i].getCameraModel() << std::endl;
-		processor->getVecImg()[i].displayImage();
-		i++;
+		std::cout << "Image name: " << processor->getVecImg()[i]->getNameImage() << std::endl;
+		std::cout << "Shutter speed: " << processor->getVecImg()[i]->getShutterSpeed() << " sec" << std::endl;
+		std::cout << "Camera model: " << processor->getVecImg()[i]->getCameraModel() << std::endl;
+		processor->getVecImg()[i]->displayImage();
 	}
 
-	delete processor;
+	delete processor; 
 }

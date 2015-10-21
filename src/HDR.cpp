@@ -12,7 +12,7 @@
  */
 HDR::HDR()
 {
-	std::vector<Image> vecImg;
+	std::vector<Image *> vecImg;
 }
 
 /********** DESTRUCTOR **********/
@@ -27,7 +27,10 @@ HDR::HDR()
  */
 HDR::~HDR()
 {
-
+	for(int i = 0; i < vecImg.size(); i++)
+	{
+		delete vecImg[i];
+	}
 }
 
 /********** GETTERS AND SETTERS **********/
@@ -41,7 +44,7 @@ HDR::~HDR()
  * Output: 
  */
 
-std::vector<Image> HDR::getVecImg()
+std::vector<Image *> HDR::getVecImg()
 {
 	return vecImg;
 }
@@ -54,7 +57,7 @@ std::vector<Image> HDR::getVecImg()
  * Input: Image *Img
  * Output: None
  */
-void HDR::add(const Image Img)
+void HDR::add(Image *Img)
 {
 	vecImg.push_back(Img);
 }
