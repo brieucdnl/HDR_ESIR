@@ -63,3 +63,16 @@ void HDR::add(Image *Img)
 }
 
 /********** METHODS  **********/
+
+/*
+ * getSize()
+ *
+ * Method returning the number of images in HDR
+ *
+ * Input: None
+ * Output: int
+ */
+int HDR::getSize()
+{
+	vecImg.size();
+}

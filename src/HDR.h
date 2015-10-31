@@ -24,6 +24,7 @@ class HDR
 		// Setters
 		void add(Image *Img);
 		// Functions
+		int getSize();
 
 	private:
 		std::vector<Image *> vecImg;
