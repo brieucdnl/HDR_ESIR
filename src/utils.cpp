@@ -12,7 +12,6 @@ void showCurve(std::vector<double> curve)
 {
 	cv::Mat graph(500, 500, CV_8UC3);
 	std::vector<cv::Point> listPoint;
-
 	for(int i = 0; i < curve.size(); i++)
 	{
 		cv::Point p(i, curve[i]);
@@ -20,6 +19,7 @@ void showCurve(std::vector<double> curve)
 	}
 	for(int i = 1; i < listPoint.size(); i++)
 	{
+		std::cout << listPoint.size() << std::endl;
 		cv::line(graph, listPoint[i-1], listPoint[i], CV_RGB(255, 0, 0));
 		cv::imshow("Non linear function from original Exposure", graph);
 		cv::waitKey(0);
@@ -32,20 +32,22 @@ void showCurve(std::vector<double> curve)
  * Create a list of curves to process
  *
  * Intput: - HDR &imgList
- *         - std::vector<int> &indexPoints
- *         - std::vector<std::vector<double>> &curvesList
+ *         - std::vector<std::pair<int,int> > &indexPoints
+ *         - std::vector<std::vector<double> > &curvesList
  * Output: None
  */
-void createCurvesList(HDR &imgList, std::vector<int> &indexPoints, std::vector<std::vector<double> >  &curvesList)
+void createCurvesList(HDR &imgList, std::vector<std::pair<int,int> > &indexPoints, std::vector<std::vector<double> > &curvesList)
 {
-	int nbPoints = indexPoints.size()/2;
+	int nbPoints = indexPoints.size();
 	double z;
 	
 	for(int i = 0; i < imgList.getSize(); i++)
 	{
+		std::vector<double> v;
+		curvesList.push_back(v);
 		for(int k = 0; k < nbPoints; k++)
 		{
-			z = imgList.getVecImg()[i]->getImg().at<int>(indexPoints[2*k], indexPoints[2*k+1]);
+			z = imgList.getVecImg()[i]->getImg().at<int>(indexPoints[k].first, indexPoints[k+1].second);
 			curvesList[i].push_back(z);
 		}
 	}
@@ -102,31 +104,24 @@ double calcDistCurves(std::vector<double> &c1, std::vector<double> &c2, int nbPo
  * Compute the different curves in a single-one
  *
  * Input: - HDR &imgList
- *        - std::vector<int> pointsList
+ *        - std::vector<std::pair<int, int>> pointsList
  *
  * Output: none
  */
-void computeCurves(HDR &imgList, std::vector<int> pointsList)
+void computeCurves(HDR &imgList, std::vector<std::pair<int,int> > &pointsList)
 {
-	int nbPoints = pointsList.size()/2;	
+	int nbPoints = pointsList.size();	
 
-	std::vector <std::vector<double> > curvesList;
-	std::vector<double> v0(imgList.getSize());
-
-	/*	for(int i = 0; i < imgList.getSize(); i++)
-	{
-		curvesList.push_back(v0);
-	} */
-
+	std::vector<std::vector<double> > curvesList;
+	//std::vector<double> v0(imgList.getSize());
 
 	createCurvesList(imgList, pointsList, curvesList);
-
 	for(int i = 0; i < imgList.getSize(); i++)
 	{
 		showCurve(curvesList[i]);
 	}
-
-	std::vector <std::pair<double,int> > g;
+	
+	std::vector<std::pair<double,int> > g;
 	
 	for(int ci=1; ci < curvesList.size(); ci++)
 	{
@@ -137,5 +132,4 @@ void computeCurves(HDR &imgList, std::vector<int> pointsList)
 			g.push_back(x_fx);
 		}
 	}
-
 }

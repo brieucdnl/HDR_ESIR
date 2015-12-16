@@ -15,11 +15,13 @@ set(${PROJECT_NAME}_CPP
 	src/main.cpp
 	src/Image.cpp
 	src/HDR.cpp
+	src/utils.cpp
 )
 
 set(${PROJECT_NAME}_H
 	src/Image.h
 	src/HDR.h
+	src/utils.h
 )
 
 add_executable(

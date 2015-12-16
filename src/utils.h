@@ -13,8 +13,8 @@
 #include "HDR.h"
 
 void showCurve(std::vector<double> curve);
-void createCurvesList(HDR &imgList, std::vector<int> &indexPoints, std::vector<std::vector<double> > &curvesList);
+void createCurvesList(HDR &imgList, std::vector<std::pair<int,int> > &indexPoints, std::vector<std::vector<double> > &curvesList);
 double calcDistCurves(std::vector<double> &c1, std::vector<double> &c2, int nbPoints);
-void computeCurves(HDR &imgList, std::vector<int> pointsList);
+void computeCurves(HDR &imgList, std::vector<std::pair<int,int> > &pointsList);
 
 #endif

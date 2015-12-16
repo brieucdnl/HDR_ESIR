@@ -1,7 +1,8 @@
 #include <iostream>
-
-#include "Image.h"
+#include <utility>
 #include "HDR.h"
+#include "Image.h"
+#include "utils.h"
 
 int main(int argc, char* argv[])
 {
@@ -10,6 +11,13 @@ int main(int argc, char* argv[])
 	
 	// Creating the HDR_Processor
 	processor = new HDR();
+	
+	// Init PointsList
+	std::vector<std::pair<int,int> > pointsList;
+	std::pair<int, int> p1(70, 70);
+	std::pair<int, int> p2(140,140);
+	pointsList.push_back(p1);
+	pointsList.push_back(p2);
 	
 	// Handle parameters
 	if(argv[1] == NULL)
@@ -36,6 +44,9 @@ int main(int argc, char* argv[])
 		std::cout << "Camera model: " << processor->getVecImg()[i]->getCameraModel() << std::endl;
 		processor->getVecImg()[i]->displayImage();
 	}
+	
+	// Compute Curves
+	computeCurves(*processor, pointsList);
 
 	delete processor; 
 }
