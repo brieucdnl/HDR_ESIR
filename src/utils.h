@@ -17,7 +17,6 @@
 #define MAX_INT16 65535
 
 void showCurve(std::vector<double> curve);
-void testCurve();
 void createCurvesList(HDR &imgList, std::vector<std::pair<int,int> > &indexPoints, std::vector<std::vector<double> > &curvesList);
 double calcDistCurves(std::vector<double> &c1, std::vector<double> &c2, int nbPoints);
 void computeCurves(HDR &imgList, std::vector<std::pair<int,int> > &pointsList);

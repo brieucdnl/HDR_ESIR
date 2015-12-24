@@ -29,33 +29,6 @@ void showCurve(std::vector<double> curve)
 }
 
 /*
- * testCurve()
- *
- * Display a curve defined in the function
- *
- * Input: None
- * Output: None
- */
-void testCurve()
-{
-	cv::Mat graph(500, 500, CV_8UC3, cv::Scalar(0, 0, 0));
-	std::vector<cv::Point> listPoint;
-	cv::Point p0(0, 0);
-	cv::Point p1(250, 10);
-	cv::Point p2(500, 450);
-	listPoint.push_back(p0);
-	listPoint.push_back(p1);
-	listPoint.push_back(p2);
-	for(int i = 1; i < listPoint.size(); i++)
-	{
-		cv::line(graph, listPoint[i-1], listPoint[i], CV_RGB(255, 0, 0));
-		cv::imshow("Test", graph);
-		cv::waitKey(0);
-	}
-}
-
-
-/*
  * createCurvesList()
  *
  * Create a list of curves to process
