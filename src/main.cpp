@@ -16,8 +16,10 @@ int main(int argc, char* argv[])
 	std::vector<std::pair<int,int> > pointsList;
 	std::pair<int, int> p1(70, 70);
 	std::pair<int, int> p2(140,140);
+	std::pair<int, int> p3(210,210);
 	pointsList.push_back(p1);
 	pointsList.push_back(p2);
+	pointsList.push_back(p3);
 	
 	// Handle parameters
 	if(argv[1] == NULL)
@@ -46,6 +48,7 @@ int main(int argc, char* argv[])
 	}
 	
 	// Compute Curves
+	//testCurve();
 	computeCurves(*processor, pointsList);
 
 	delete processor; 
