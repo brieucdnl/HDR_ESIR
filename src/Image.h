@@ -25,6 +25,7 @@ class Image
 		float getShutterSpeed() const;
 		// Functions
 		void displayImage() const;
+		void getZExtremum(double *minVal, double *maxVal, int channel);
 	
 	private:
 		cv::Mat Img;

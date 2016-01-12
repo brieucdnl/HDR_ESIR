@@ -10,12 +10,15 @@
  */
 void showCurve(std::vector<double> curve)
 {
+	int sizeCurve = curve.size();	
+	int threshold = 500/(sizeCurve - 1);
+
 	cv::Mat graph(500, 500, CV_8UC3, cv::Scalar(0, 0, 0));
 	std::vector<cv::Point> listPoint;
 	for(int i = 0; i < curve.size(); i++)
 	{
 		int norm_curve = (curve[i]*500)/MAX_INT16;
-		cv::Point p(i*(250-1), norm_curve);
+		cv::Point p(i*threshold, norm_curve);
 		listPoint.push_back(p);
 	}
 	for(int i = 1; i < listPoint.size(); i++)
@@ -49,8 +52,8 @@ void createCurvesList(HDR &imgList, std::vector<std::pair<int,int> > &indexPoint
 		curvesList.push_back(v);
 		for(int k = 0; k < nbPoints; k++)
 		{
-			z1 = imgList.getVecImg()[i]->getImg().at<cv::Vec3s>(indexPoints[k].first, indexPoints[k+1].second)[0]; // Blue
-			std::cout << "Bleu " << z1 << std::endl;
+			z1 = imgList.getVecImg()[i]->getImg().at<cv::Vec3i>(indexPoints[k].first, indexPoints[k+1].second)[0]; // Blue
+			//std::cout << "Bleu " << z1 << std::endl;
 			curvesList[i].push_back(z1);
 		}
 	}
@@ -80,6 +83,7 @@ double calcDistCurves(std::vector<double> &c1, std::vector<double> &c2, int nbPo
 	{
 		for(int k = 0; k < nbPoints; k++)
 		{
+			std::cout << "c1[k]: "  << c1[k] << " - c2[0]: " << c2[0] << std::endl;
 			if(c1[k] >= c2[0])
 			{
 				for(int i1 = k; i1 < nbPoints; i1++)
@@ -116,7 +120,6 @@ void computeCurves(HDR &imgList, std::vector<std::pair<int,int> > &pointsList)
 	int nbPoints = pointsList.size();	
 
 	std::vector<std::vector<double> > curvesList;
-	//std::vector<double> v0(imgList.getSize());
 
 	createCurvesList(imgList, pointsList, curvesList);
 	for(int i = 0; i < imgList.getSize(); i++)

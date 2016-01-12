@@ -49,7 +49,11 @@ int main(int argc, char* argv[])
 	
 	// Compute Curves
 	//testCurve();
-	computeCurves(*processor, pointsList);
+	//std::cout << I->getImg() << std::endl;
+
+	double minVal, maxVal;
+	I->getZExtremum(&minVal, &maxVal, 0);
+	//computeCurves(*processor, pointsList);
 
 	delete processor; 
 }
