@@ -52,7 +52,7 @@ void createCurvesList(HDR &imgList, std::vector<std::pair<int,int> > &indexPoint
 		curvesList.push_back(v);
 		for(int k = 0; k < nbPoints; k++)
 		{
-			z1 = imgList.getVecImg()[i]->getImg().at<cv::Vec3i>(indexPoints[k].first, indexPoints[k+1].second)[0]; // Blue
+			z1 = imgList.getVecImg()[i]->getImg().at<cv::Vec3w>(indexPoints[k].first, indexPoints[k+1].second)[0]; // Blue
 			//std::cout << "Bleu " << z1 << std::endl;
 			curvesList[i].push_back(z1);
 		}

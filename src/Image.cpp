@@ -39,9 +39,9 @@ Image::Image(const char* file)
 		{
 			for(int j = 0; j < tmpImg->width; j++)
 			{
-				if((ushort)Img.at<cv::Vec3s>(i,j)[0] < 0)
+				if(Img.at<cv::Vec3w>(i,j)[0] < 0)
 				{
-					std::cout << (ushort)Img.at<cv::Vec3s>(i,j)[0] << " Point : [" << j << "," << i << "]" << std::endl;
+					std::cout << Img.at<cv::Vec3w>(i,j)[0] << " Point : [" << j << "," << i << "]" << std::endl;
 				}
 			}
 		}

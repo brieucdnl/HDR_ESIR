@@ -1,5 +1,11 @@
+// Include STL
 #include <iostream>
 #include <utility>
+
+// Include QT
+#include <QApplication>
+
+// Projects include
 #include "HDR.h"
 #include "Image.h"
 #include "utils.h"
@@ -8,6 +14,7 @@ int main(int argc, char* argv[])
 {
 	Image *I;
 	HDR *processor;
+	QApplication app(argc, argv);
 	
 	// Creating the HDR_Processor
 	processor = new HDR();

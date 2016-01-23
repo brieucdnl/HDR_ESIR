@@ -6,8 +6,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 find_package(OpenCV REQUIRED)
 find_package(LibRaw REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 
-include_directories(${LibRaw_INCLUDE_DIRS})
+include_directories(${LibRaw_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS})
 
 set(LIBS ${LIBS} ${LibRaw_LIBRARIES})
 
@@ -30,4 +31,4 @@ add_executable(
 	${${PROJECT_NAME}_H}
 )
 
-target_link_libraries(${PROJECT_NAME} ${LIBS} ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} ${LIBS} ${OpenCV_LIBS} ${Qt5Widgets_LIBRARIES})
